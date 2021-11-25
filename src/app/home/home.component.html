@@ -1,1 +1,23 @@
-<p>home works!</p>
+<br />
+<mat-form-field style="width: 100%">
+  <mat-label>Favorite food</mat-label>
+  <input
+    matInput
+    placeholder="Search TODO"
+    [formControl]="filter"
+    autocomplete="off"
+  />
+</mat-form-field>
+
+<mat-selection-list>
+  <mat-list-option
+    *ngFor="let todo of filteredTodos$ | async"
+    [selected]="todo.completed"
+  >
+    {{ todo.title }}
+  </mat-list-option>
+</mat-selection-list>
+
+<h1 *ngIf="(filteredTodos$ | async)?.length === 0">
+  No Todo found for this filter
+</h1>
